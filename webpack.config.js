@@ -1,4 +1,5 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 
 module.exports = {
@@ -25,11 +26,27 @@ module.exports = {
       // },
       {
         test: /\.css/,
-        loader: ExtractTextPlugin.extract('css'),
+        //  loader: ExtractTextPlugin.extract('css'),
+        // include: __dirname + '/src',
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'),
+        include: __dirname + '/src',
       },
     ]
   },
+  postcss: [
+    require('autoprefixer'),
+    // require('postcss-color-rebeccapurple')
+  ],
+
+  resolve: {
+    modulesDirectories: ['node_modules', 'components']
+  },
   plugins: [
-    new ExtractTextPlugin('styles.css')
+    new ExtractTextPlugin('styles.css'),
+    new BrowserSyncPlugin({
+        host: 'localhost',
+        port: 3333,
+        proxy: 'http://localhost:8080/'
+    })
   ]
 };
