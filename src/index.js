@@ -6,10 +6,10 @@
 
 import styles from './index.css'
 
-let item = `
-  <div class="item">
+let ite = `
+  <div style={styles.item}>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur laudantium recusandae itaque libero velit minus ex reiciendis veniam. Eligendi modi sint delectus beatae nemo provident ratione maiores, voluptatibus a tempore!</p>
   </div>
 `
 
-document.write(item);
+document.write(ite);
